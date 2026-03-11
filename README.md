@@ -27,7 +27,7 @@ Guide for creating effective Claude Code skills — workflows, structure, and be
 Run inside Claude Code:
 
 ```
-/plugin marketplace add github:lucassilveirabnp/test-claude-plugin
+/plugin marketplace add lucassilveirabnp/test-claude-plugin
 /plugin install test-claude-plugin@test-claude-plugin
 ```
 
