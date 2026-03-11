@@ -23,7 +23,7 @@ Logging best practices focused on wide events (canonical log lines) for powerful
 Add this plugin to Claude Code via settings or run:
 
 ```bash
-claude mcp add --scope user github:lucassilveirabnp/claude-code-skills
+claude mcp add --scope user github:lucassilveirabnp/test-claude-plugin
 ```
 
 Or reference skills directly in your project's `CLAUDE.md`.
