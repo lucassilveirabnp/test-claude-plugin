@@ -1,0 +1,11 @@
+{
+  "name": "test-claude-plugin",
+  "description": "Skills collection for Python API development with FastAPI and logging best practices",
+  "version": "1.0.0",
+  "author": {
+    "name": "lucassilveirabnp"
+  },
+  "homepage": "https://github.com/lucassilveirabnp/test-claude-plugin",
+  "repository": "https://github.com/lucassilveirabnp/test-claude-plugin",
+  "license": "MIT"
+}

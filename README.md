@@ -1,10 +1,10 @@
-# Claude Code Skills
+# test-claude-plugin
 
-A collection of Claude Code skills for development best practices.
+Skills collection for Claude Code with Python API development and logging best practices.
 
 ## Skills
 
-### `/fastapi`
+### `/test-claude-plugin:fastapi`
 Build Python APIs with FastAPI, Pydantic v2, and SQLAlchemy 2.0 async.
 
 Covers:
@@ -15,15 +15,29 @@ Covers:
 - 7 documented known issues and their fixes
 - Testing with pytest + httpx
 
-### `logging-best-practices`
+### `/test-claude-plugin:logging-best-practices`
 Logging best practices focused on wide events (canonical log lines) for powerful debugging and analytics.
 
 ## Installation
 
-Add this plugin to Claude Code via settings or run:
-
+### Test locally
 ```bash
-claude mcp add --scope user github:lucassilveirabnp/test-claude-plugin
+claude --plugin-dir ./test-claude-plugin
 ```
 
-Or reference skills directly in your project's `CLAUDE.md`.
+### Via marketplace (after setup)
+See [Claude Code plugin marketplaces](https://code.claude.com/docs/en/plugin-marketplaces) for distribution options.
+
+## Plugin structure
+
+```
+test-claude-plugin/
+├── .claude-plugin/
+│   └── plugin.json          # Plugin manifest
+├── skills/
+│   ├── fastapi/
+│   │   └── SKILL.md         # FastAPI skill
+│   └── logging-best-practices/
+│       └── SKILL.md         # Logging skill
+└── README.md
+```
