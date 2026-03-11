@@ -1,0 +1,19 @@
+{
+  "name": "test-claude-plugin",
+  "owner": {
+    "name": "lucassilveirabnp"
+  },
+  "metadata": {
+    "description": "Skills for Python API development and logging best practices"
+  },
+  "plugins": [
+    {
+      "name": "test-claude-plugin",
+      "source": {
+        "source": "github",
+        "repo": "lucassilveirabnp/test-claude-plugin"
+      },
+      "description": "FastAPI and logging best practices skills"
+    }
+  ]
+}
