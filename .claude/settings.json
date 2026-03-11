@@ -1,8 +1,10 @@
 {
-  "extraKnownMarketplaces": [
-    {
-      "source": "github",
-      "repo": "lucassilveirabnp/test-claude-plugin"
+  "extraKnownMarketplaces": {
+    "test-claude-plugin": {
+      "source": {
+        "source": "github",
+        "repo": "lucassilveirabnp/test-claude-plugin"
+      }
     }
-  ]
+  }
 }

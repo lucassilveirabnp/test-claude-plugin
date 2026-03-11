@@ -120,12 +120,14 @@ Para que **paths relativos** (`source: "./"`) funcionem, o marketplace deve ser 
 
 ```json
 {
-  "extraKnownMarketplaces": [
-    {
-      "source": "github",
-      "repo": "owner/plugin-repo"
+  "extraKnownMarketplaces": {
+    "marketplace-name": {
+      "source": {
+        "source": "github",
+        "repo": "owner/plugin-repo"
+      }
     }
-  ]
+  }
 }
 ```
 
