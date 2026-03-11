@@ -20,24 +20,73 @@ Logging best practices focused on wide events (canonical log lines) for powerful
 
 ## Installation
 
-### Test locally
+### Option 1 — Manual (once per machine)
+
+```shell
+/plugin marketplace add lucassilveirabnp/test-claude-plugin
+/plugin install test-claude-plugin@test-claude-plugin
+```
+
+### Option 2 — Via project settings (shared with team)
+
+Add to your project's `.claude/settings.json`:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "test-claude-plugin": {
+      "source": {
+        "source": "github",
+        "repo": "lucassilveirabnp/test-claude-plugin"
+      }
+    }
+  }
+}
+```
+
+Then install once inside Claude Code:
+
+```shell
+/plugin install test-claude-plugin@test-claude-plugin
+```
+
+### Option 3 — Auto-enable for the whole team
+
+Add both `extraKnownMarketplaces` and `enabledPlugins` to `.claude/settings.json` and commit it to the repo. Everyone who opens the project will be prompted to install automatically:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "test-claude-plugin": {
+      "source": {
+        "source": "github",
+        "repo": "lucassilveirabnp/test-claude-plugin"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "test-claude-plugin@test-claude-plugin": true
+  }
+}
+```
+
+## Test locally (development)
+
 ```bash
 claude --plugin-dir ./test-claude-plugin
 ```
-
-### Via marketplace (after setup)
-See [Claude Code plugin marketplaces](https://code.claude.com/docs/en/plugin-marketplaces) for distribution options.
 
 ## Plugin structure
 
 ```
 test-claude-plugin/
 ├── .claude-plugin/
-│   └── plugin.json          # Plugin manifest
+│   ├── plugin.json        # Plugin manifest
+│   └── marketplace.json   # Marketplace catalog
 ├── skills/
 │   ├── fastapi/
-│   │   └── SKILL.md         # FastAPI skill
+│   │   └── SKILL.md       # /test-claude-plugin:fastapi
 │   └── logging-best-practices/
-│       └── SKILL.md         # Logging skill
+│       └── SKILL.md       # /test-claude-plugin:logging-best-practices
 └── README.md
 ```

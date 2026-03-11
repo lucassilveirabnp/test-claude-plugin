@@ -7,5 +7,6 @@
   },
   "homepage": "https://github.com/lucassilveirabnp/test-claude-plugin",
   "repository": "https://github.com/lucassilveirabnp/test-claude-plugin",
-  "license": "MIT"
+  "license": "MIT",
+  "keywords": ["fastapi", "python", "logging", "pydantic", "sqlalchemy", "jwt", "async"]
 }

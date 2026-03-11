@@ -9,11 +9,13 @@
   "plugins": [
     {
       "name": "test-claude-plugin",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/lucassilveirabnp/test-claude-plugin.git"
-      },
-      "description": "FastAPI and logging best practices skills"
+      "source": "./",
+      "description": "FastAPI and logging best practices skills for Python API development",
+      "version": "1.0.0",
+      "homepage": "https://github.com/lucassilveirabnp/test-claude-plugin",
+      "license": "MIT",
+      "keywords": ["fastapi", "python", "logging", "pydantic", "sqlalchemy"],
+      "category": "development"
     }
   ]
 }
