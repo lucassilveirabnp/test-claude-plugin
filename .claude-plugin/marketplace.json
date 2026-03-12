@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "test-claude-plugin",
-      "source": "./",
+      "source": "./plugins/test-claude-plugin",
       "description": "FastAPI and logging best practices skills for Python API development",
       "version": "1.1.0",
       "homepage": "https://github.com/lucassilveirabnp/test-claude-plugin",

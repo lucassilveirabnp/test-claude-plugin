@@ -70,7 +70,7 @@ When a new version is released:
 ## Development / test locally
 
 ```bash
-claude --plugin-dir ./
+claude --plugin-dir ./plugins/test-claude-plugin
 ```
 
 Reload changes during development:
@@ -83,27 +83,28 @@ Reload changes during development:
 ## Plugin structure
 
 ```
-test-claude-plugin/
+test-claude-plugin/                    ← marketplace repo root
 ├── .claude-plugin/
-│   ├── plugin.json              # Plugin manifest
-│   └── marketplace.json         # Marketplace catalog (source: "./")
-├── .claude/
-│   └── settings.json            # extraKnownMarketplaces for project consumers
-├── skills/
-│   ├── fastapi/SKILL.md
-│   ├── logging-best-practices/SKILL.md
-│   ├── mcp-builder/SKILL.md
-│   └── skill-creator/SKILL.md
-└── docs/                        # Offline copies of official plugin docs
+│   └── marketplace.json               ← marketplace catalog
+├── plugins/
+│   └── test-claude-plugin/            ← plugin lives in subdirectory
+│       ├── .claude-plugin/
+│       │   └── plugin.json            ← plugin manifest
+│       └── skills/
+│           ├── fastapi/SKILL.md
+│           ├── logging-best-practices/SKILL.md
+│           ├── mcp-builder/SKILL.md
+│           └── skill-creator/SKILL.md
+└── docs/                              ← offline copies of official plugin docs
 ```
 
 ---
 
 ## Maintaining the plugin
 
-When adding or modifying skills, always bump the version in **both** files:
+When adding or modifying skills, bump the version in **both** files:
 
-- `.claude-plugin/plugin.json`
+- `plugins/test-claude-plugin/.claude-plugin/plugin.json`
 - `.claude-plugin/marketplace.json`
 
 Then push and run `/plugin marketplace update test-claude-plugin` + `/reload-plugins`.

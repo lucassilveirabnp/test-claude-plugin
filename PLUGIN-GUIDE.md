@@ -21,29 +21,36 @@ Um plugin pode ter qualquer combinação desses componentes no mesmo repositóri
 
 ## Estrutura do repositório
 
+Seguindo o padrão oficial da Anthropic ([claude-plugins-official](https://github.com/anthropics/claude-plugins-official)), o **marketplace e os plugins ficam no mesmo repo**, mas separados em subpastas:
+
 ```
-meu-plugin/
+meu-plugin/                      ← raiz do repo (marketplace)
 ├── .claude-plugin/
-│   ├── plugin.json        ← identidade do plugin (obrigatório)
-│   └── marketplace.json   ← catálogo para distribuição (obrigatório para instalar via /plugin)
-├── skills/                ← skills (opcional)
-│   └── nome-da-skill/
-│       ├── SKILL.md       ← arquivo principal, sempre este nome
-│       ├── reference/     ← arquivos de suporte opcionais
-│       └── scripts/       ← scripts opcionais
-├── agents/                ← subagentes (opcional)
-│   └── meu-agente.md
-├── hooks/                 ← automações por evento (opcional)
-│   └── hooks.json
-├── .mcp.json              ← servidores MCP (opcional)
+│   └── marketplace.json         ← catálogo para distribuição (source aponta para subpasta)
+├── plugins/
+│   └── meu-plugin/              ← plugin fica em subpasta, nunca na raiz
+│       ├── .claude-plugin/
+│       │   └── plugin.json      ← identidade do plugin (obrigatório)
+│       ├── skills/              ← skills (opcional)
+│       │   └── nome-da-skill/
+│       │       ├── SKILL.md     ← arquivo principal, sempre este nome
+│       │       ├── reference/   ← arquivos de suporte opcionais
+│       │       └── scripts/     ← scripts opcionais
+│       ├── agents/              ← subagentes (opcional)
+│       │   └── meu-agente.md
+│       ├── hooks/               ← automações por evento (opcional)
+│       │   └── hooks.json
+│       └── .mcp.json            ← servidores MCP (opcional)
 └── README.md
 ```
 
 **Regras críticas:**
-- Só `plugin.json` e `marketplace.json` ficam dentro de `.claude-plugin/` — agentes, skills e hooks ficam na raiz
-- Skills ficam em `skills/<nome>/SKILL.md` — nunca `.md` na raiz, arquivo sempre se chama `SKILL.md`
-- O nome da pasta vira o comando: `skills/fastapi/` → `/meu-plugin:fastapi`
-- **Nunca use `"source": "./"` no marketplace.json** quando plugin e marketplace estão na mesma raiz — causa recursão infinita no cache
+- `marketplace.json` fica em `.claude-plugin/` na **raiz do repo**
+- `plugin.json` fica em `.claude-plugin/` dentro da **subpasta do plugin** (`plugins/<nome>/`)
+- O plugin NUNCA fica na raiz — sempre em `plugins/<nome>/`
+- Skills ficam em `plugins/<nome>/skills/<skill>/SKILL.md`
+- O nome da pasta da skill vira o comando: `skills/fastapi/` → `/meu-plugin:fastapi`
+- **`source` no marketplace.json aponta para a subpasta**: `"./plugins/meu-plugin"` — **nunca `"./"`**, pois causa recursão infinita no cache
 
 ---
 
@@ -73,10 +80,7 @@ meu-plugin/
   "plugins": [
     {
       "name": "meu-plugin",
-      "source": {
-        "source": "github",
-        "repo": "seu-usuario/meu-plugin"
-      },
+      "source": "./plugins/meu-plugin",
       "description": "Descrição",
       "version": "1.0.0",
       "license": "MIT"
@@ -85,7 +89,8 @@ meu-plugin/
 }
 ```
 
-> ⚠️ **Nunca use `"source": "./"` quando marketplace e plugin estão na mesma raiz** — causa recursão infinita no cache.
+> **`source` aponta para a subpasta do plugin dentro do repo** — nunca para a raiz `"./"`.
+> Para relative path (`"./plugins/..."`), coloque a versão aqui no marketplace.json, não no plugin.json.
 
 ---
 
@@ -243,7 +248,7 @@ Após subir mudanças no GitHub:
 ## Testar localmente (sem publicar)
 
 ```bash
-claude --plugin-dir ./meu-plugin
+claude --plugin-dir ./plugins/meu-plugin
 ```
 
 ---
